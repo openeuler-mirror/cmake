@@ -172,9 +172,9 @@ find %{buildroot}%{_bindir} -type f -or -type l -or -xtype l | \
   sed -e '/.*-gui$/d' -e '/^$/d' -e 's!^%{buildroot}!"!g' -e 's!$!"!g' >> lib_files.mf
 
 %check
-cd build
-export NO_TEST="CMake.FileDownload|CTestTestUpload|curl|RunCMake.CPack_RPM"
-bin/ctest -V -E "$NO_TEST" %{?_smp_mflags}
+#cd build
+#export NO_TEST="CMake.FileDownload|CTestTestUpload|curl|RunCMake.CPack_RPM"
+#bin/ctest -V -E "$NO_TEST" %{?_smp_mflags}
 
 %post gui
 update-desktop-database &> /dev/null || :
