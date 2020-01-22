@@ -10,7 +10,7 @@
 
 Name:           cmake
 Version:        3.12.1
-Release:        2
+Release:        3
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
@@ -231,6 +231,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Wed Jan 22 2020 Yiru Wang <wangyiru1@huawei.com> - 3.12.1-3
+- init package
+
 * Fri Nov 29 2019 lijin Yang <yanglijin@huawei.com> - 3.12.1-2
 - init package
 
