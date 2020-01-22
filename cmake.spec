@@ -232,7 +232,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 %changelog
 * Wed Jan 22 2020 Yiru Wang <wangyiru1@huawei.com> - 3.12.1-3
-- init package
+- Disable test
 
 * Fri Nov 29 2019 lijin Yang <yanglijin@huawei.com> - 3.12.1-2
 - init package
