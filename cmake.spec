@@ -10,7 +10,7 @@
 
 Name:           cmake
 Version:        3.12.1
-Release:        3
+Release:        4
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
@@ -33,7 +33,7 @@ BuildRequires:  libX11-devel
 BuildRequires:  ncurses-devel
 %endif
 %if %{with sphinx}
-BuildRequires:  %{_bindir}/sphinx-build
+BuildRequires:  python3-sphinx
 %endif
 %if %{without bootstrap}
 BuildRequires:  bzip2-devel curl-devel expat-devel jsoncpp-devel libarchive-devel
@@ -231,6 +231,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Thu Feb 20 2020 lijin Yang <yanglijin@huawei.com> -3.12.1-4
+- make sphinx-build enable
+
 * Wed Jan 22 2020 Yiru Wang <wangyiru1@huawei.com> - 3.12.1-3
 - Disable test
 
