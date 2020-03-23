@@ -10,7 +10,7 @@
 
 Name:           cmake
 Version:        3.12.1
-Release:        4
+Release:        5
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
@@ -24,7 +24,7 @@ Patch0001:      cmake-findruby.patch
 Patch0002:      cmake-fedora-flag_release.patch
 Patch0003:      cmake-mingw-dl.patch
 
-BuildRequires:  coreutils findutils gcc-c++ gcc-gfortran sed
+BuildRequires:  coreutils findutils gcc-c++ gcc-gfortran sed gdb
 BuildRequires:  emacs python3-devel pkgconfig(Qt5Widgets) desktop-file-utils
 %if %{with X11_test}
 BuildRequires:  libX11-devel
@@ -231,6 +231,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Mon Mar 23 2020 Xiangyang Yu <yuxiangyang4@huawei.com> -3.12.1-5
+- add BuildRequires:gdb to fix src.rpm build error
+
 * Thu Feb 20 2020 lijin Yang <yanglijin@huawei.com> -3.12.1-4
 - make sphinx-build enable
 
