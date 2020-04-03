@@ -10,7 +10,7 @@
 
 Name:           cmake
 Version:        3.12.1
-Release:        5
+Release:        6
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
@@ -185,13 +185,13 @@ touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
 update-desktop-database &> /dev/null || :
 if [ $1 -eq 0 ] ; then
     touch --no-create %{_datadir}/mime || :
-    update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
+    update-mime-database %{_datadir}/mime &> /dev/null || :
     touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
     gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 fi
 
 %posttrans gui
-update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
+update-mime-database %{_datadir}/mime &> /dev/null || :
 gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 %files -f lib_files.mf
@@ -231,6 +231,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Fri Apr 03 2020 zhouyihang <zhouyihang1@huawei.com> - 3.12.1-6
+- Remove useless scriptlet
+
 * Mon Mar 23 2020 Xiangyang Yu <yuxiangyang4@huawei.com> -3.12.1-5
 - add BuildRequires:gdb to fix src.rpm build error
 
