@@ -1,8 +1,13 @@
-diff -rupN cmake-3.10.1/Modules/Platform/Windows-GNU.cmake cmake-3.10.1-new/Modules/Platform/Windows-GNU.cmake
---- cmake-3.10.1/Modules/Platform/Windows-GNU.cmake	2017-12-13 14:25:23.000000000 +0100
-+++ cmake-3.10.1-new/Modules/Platform/Windows-GNU.cmake	2017-12-30 15:32:03.253515499 +0100
-@@ -28,9 +28,11 @@ if(MINGW)
-   set(CMAKE_FIND_LIBRARY_SUFFIXES ".dll" ".dll.a" ".a" ".lib")
+Index: cmake-3.17.2/Modules/Platform/Windows-GNU.cmake
+===================================================================
+--- cmake-3.17.2.orig/Modules/Platform/Windows-GNU.cmake
++++ cmake-3.17.2/Modules/Platform/Windows-GNU.cmake
+@@ -25,12 +25,14 @@ endif()
+ 
+ if(MINGW)
+   set(CMAKE_FIND_LIBRARY_PREFIXES "lib" "")
+-  set(CMAKE_FIND_LIBRARY_SUFFIXES ".dll.a" ".a" ".lib")
++  set(CMAKE_FIND_LIBRARY_SUFFIXES ".dll" ".dll.a" ".a" ".lib")
    set(CMAKE_C_STANDARD_LIBRARIES_INIT "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32")
    set(CMAKE_CXX_STANDARD_LIBRARIES_INIT "${CMAKE_C_STANDARD_LIBRARIES_INIT}")
 +  set(CMAKE_DL_LIBS "dl")
