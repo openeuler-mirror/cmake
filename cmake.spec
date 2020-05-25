@@ -9,12 +9,12 @@
 %{?rcsuf:%global versuf -%{rcsuf}}
 
 Name:           cmake
-Version:        3.12.1
-Release:        6
+Version:        3.17.2
+Release:        1
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
-Source0:        http://www.cmake.org/files/v3.12/cmake-%{version}.tar.gz
+Source0:        https://www.cmake.org/files/v3.17/cmake-%{version}.tar.gz
 Source1:        cmake-init.el
 Source2:        macros.cmake
 Source3:        cmake.attr
@@ -155,7 +155,6 @@ cp -p Utilities/cmcurl/COPYING ./COPYING_cmcurl
 cp -p Utilities/cmlibrhash/COPYING ./COPYING_cmlibrhash
 cp -p Utilities/cmzlib/Copyright.txt ./Copyright_cmzlib
 cp -p Utilities/cmexpat/COPYING ./COPYING_cmexpat
-cp -p Utilities/cmcompress/Copyright.txt ./Copyright_cmcompress
 install -d %{buildroot}%{_pkgdocdir}
 cp -pr %{buildroot}%{_datadir}/cmake/Help %{buildroot}%{_pkgdocdir}
 
@@ -231,6 +230,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Mon May 25 2020 licihua <licihua@huawei.com> - 3.17.2-1
+- Update to cmake-3.17.2
+
 * Fri Apr 03 2020 zhouyihang <zhouyihang1@huawei.com> - 3.12.1-6
 - Remove useless scriptlet
 
