@@ -9,20 +9,20 @@
 %{?rcsuf:%global versuf -%{rcsuf}}
 
 Name:           cmake
-Version:        3.17.2
+Version:        3.18.0
 Release:        1
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
-Source0:        https://www.cmake.org/files/v3.17/cmake-%{version}.tar.gz
+Source0:        https://www.cmake.org/files/v3.18/cmake-%{version}.tar.gz
 Source1:        cmake-init.el
 Source2:        macros.cmake
 Source3:        cmake.attr
 Source4:        cmake.prov
 Source5:        cmake.req
-Patch0001:      cmake-findruby.patch
-Patch0002:      cmake-fedora-flag_release.patch
-Patch0003:      cmake-mingw-dl.patch
+Patch0:         cmake-findruby.patch
+Patch1:         cmake-fedora-flag_release.patch
+Patch2:         cmake-mingw-dl.patch
 
 BuildRequires:  coreutils findutils gcc-c++ gcc-gfortran sed gdb
 BuildRequires:  emacs python3-devel pkgconfig(Qt5Widgets) desktop-file-utils
@@ -201,7 +201,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/aclocal/cmake.m4
 %{_datadir}/bash-completion
 %{_emacs_sitelispdir}/cmake
+%{_emacs_sitelispdir}/cmake-mode.el
 %{_emacs_sitestartdir}/cmake-init.el
+%{_datadir}/vim/vimfiles/indent/%{name}.vim
+%{_datadir}/vim/vimfiles//syntax/%{name}.vim
 
 %files filesystem -f data_dirs.mf -f lib_dirs.mf
 
@@ -230,6 +233,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Thu Jul 30 2020 wangchen <wangchen137@huawei.com> - 3.18.0-1
+- Update to cmake-3.18.0
+
 * Mon May 25 2020 licihua <licihua@huawei.com> - 3.17.2-1
 - Update to cmake-3.17.2
 
