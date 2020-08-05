@@ -10,7 +10,7 @@
 
 Name:           cmake
 Version:        3.16.5
-Release:        1
+Release:        2
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
@@ -37,7 +37,7 @@ BuildRequires:  python3-sphinx
 %endif
 %if %{without bootstrap}
 BuildRequires:  bzip2-devel curl-devel expat-devel jsoncpp-devel libarchive-devel
-BuildRequires:  libuv-devel rhash-devel xz-devel zlib-devel cmake-rpm-macros
+BuildRequires:  rhash-devel xz-devel zlib-devel cmake-rpm-macros
 %endif
 
 Requires:       cmake-data = %{version}-%{release} cmake-rpm-macros = %{version}-%{release}
@@ -110,6 +110,7 @@ mkdir build
 pushd build
 ../bootstrap --prefix=%{_prefix} --datadir=/share/cmake \
              --docdir=/share/doc/cmake --mandir=/share/man \
+             --no-system-libuv \
              --%{?with_bootstrap:no-}system-libs \
              --parallel=`/usr/bin/getconf _NPROCESSORS_ONLN` \
 %if %{with sphinx}
@@ -230,6 +231,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Wed Aug 5 2020 hanxinke <hanxinke@huawei.com> - 3.16.5-2
+- use cmake-provided libuv library
+
 * Tue Jul 28 2020 fangxiuning <fangxiuning@huawei.com> - 3.16.5-1
 - Update version to 3.16.5
 
