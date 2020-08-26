@@ -10,7 +10,7 @@
 
 Name:           cmake
 Version:        3.18.0
-Release:        1
+Release:        2
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
@@ -233,6 +233,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Tue Aug 25 2020 wangchen <wangchen137@huawei.com> - 3.18.0-2
+- Modify macros.cmake
+
 * Thu Jul 30 2020 wangchen <wangchen137@huawei.com> - 3.18.0-1
 - Update to cmake-3.18.0
 
