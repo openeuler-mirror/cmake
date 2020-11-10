@@ -10,7 +10,7 @@
 
 Name:           cmake
 Version:        3.16.5
-Release:        2
+Release:        3
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
@@ -42,6 +42,7 @@ BuildRequires:  rhash-devel xz-devel zlib-devel cmake-rpm-macros
 
 Requires:       cmake-data = %{version}-%{release} cmake-rpm-macros = %{version}-%{release}
 Requires:       cmake-filesystem = %{version}-%{release}
+Requires:       cmake-help = %{version}-%{release}
 Provides:       cmake3 = %{version}-%{release} bundled(md5-deutsch) bundled(kwsys)
 
 %description
@@ -231,6 +232,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Fri Nov 06 2020 huanghaitao <huanghaitao8@huawei.com> - 3.16.5-3
+- Make help package required by cmake
+
 * Wed Aug 5 2020 hanxinke <hanxinke@huawei.com> - 3.16.5-2
 - use cmake-provided libuv library
 
