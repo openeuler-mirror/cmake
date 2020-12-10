@@ -10,11 +10,11 @@
 
 Name:           cmake
 Version:        3.16.5
-Release:        2
+Release:        3
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
-Source0:        http://www.cmake.org/files/v3.12/cmake-%{version}.tar.gz
+Source0:        http://www.cmake.org/files/v3.16/cmake-%{version}.tar.gz
 Source1:        cmake-init.el
 Source2:        macros.cmake
 Source3:        cmake.attr
@@ -231,6 +231,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Thu Dec 10 2020 wangchen <wangchen137@huawei.com> - 3.16.5-3
+- Correct the invalid Source0
+
 * Wed Aug 5 2020 hanxinke <hanxinke@huawei.com> - 3.16.5-2
 - use cmake-provided libuv library
 
