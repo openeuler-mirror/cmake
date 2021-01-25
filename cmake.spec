@@ -9,12 +9,12 @@
 %{?rcsuf:%global versuf -%{rcsuf}}
 
 Name:           cmake
-Version:        3.18.0
-Release:        3
+Version:        3.19.2
+Release:        1
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
-Source0:        https://www.cmake.org/files/v3.18/cmake-%{version}.tar.gz
+Source0:        https://www.cmake.org/files/v3.19/cmake-%{version}.tar.gz
 Source1:        cmake-init.el
 Source2:        macros.cmake
 Source3:        cmake.attr
@@ -233,6 +233,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Mon Jan 25 2021 wangchen <wangchen137@huawei.com> - 3.19.2-1
+- Update to 3.19.2
+
 * Fri Aug 29 2020 wangchen <wangchen137@huawei.com> - 3.18.0-3
 - Revert macros.cmake
 
