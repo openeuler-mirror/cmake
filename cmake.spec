@@ -1,3 +1,4 @@
+%define debug_package %{nil}
 %bcond_with bootstrap
 %bcond_without ncurses
 %bcond_without sphinx
@@ -10,7 +11,7 @@
 
 Name:           cmake
 Version:        3.16.5
-Release:        3
+Release:        4
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
@@ -103,8 +104,8 @@ sed '1c #!%{__python3}' %{SOURCE4} > cmake.prov
 sed '1c #!%{__python3}' %{SOURCE5} > cmake.req
 
 %build
-export CFLAGS="%{optflags}"
-export CXXFLAGS="%{optflags}"
+export CFLAGS=`echo %{optflags} | sed 's/-g\b/-s/g'`
+export CXXFLAGS=`echo %{optflags} | sed 's/-g\b/-s/g'`
 export LDFLAGS="%{?__global_ldflags}"
 mkdir build
 pushd build
@@ -231,6 +232,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Mon Mar 22 2021 lirui <lirui130@huawei.com> - 3.16.5-4
+- Remove the -g option and the debug package
+- add the -s option
+
 * Thu Dec 10 2020 wangchen <wangchen137@huawei.com> - 3.16.5-3
 - Correct the invalid Source0
 
