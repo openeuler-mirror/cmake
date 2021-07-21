@@ -11,7 +11,7 @@
 
 Name:           cmake
 Version:        3.19.2
-Release:        2
+Release:        3
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
@@ -25,7 +25,7 @@ Patch0:         cmake-findruby.patch
 Patch1:         cmake-fedora-flag_release.patch
 Patch2:         cmake-mingw-dl.patch
 
-BuildRequires:  coreutils findutils gcc-c++ gcc-gfortran sed gdb
+BuildRequires:  coreutils findutils gcc-c++ gcc-gfortran sed
 BuildRequires:  emacs python3-devel pkgconfig(Qt5Widgets) desktop-file-utils
 %if %{with X11_test}
 BuildRequires:  libX11-devel
@@ -234,6 +234,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Tue Jul 20 2021 wangchen <wangchen137@huawei.com> - 3.19.2-3
+- Delete unnecessary gdb from BuildRequires
+
 * Mon Mar 22 2021 lirui <lirui130@huawei.com> - 3.19.2-2
 - Remove the -g option and the debug package
 - add the -s option
@@ -241,7 +244,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 * Mon Jan 25 2021 wangchen <wangchen137@huawei.com> - 3.19.2-1
 - Update to 3.19.2
 
-* Fri Aug 29 2020 wangchen <wangchen137@huawei.com> - 3.18.0-3
+* Sat Aug 29 2020 wangchen <wangchen137@huawei.com> - 3.18.0-3
 - Revert macros.cmake
 
 * Tue Aug 25 2020 wangchen <wangchen137@huawei.com> - 3.18.0-2
