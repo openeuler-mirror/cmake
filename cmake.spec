@@ -10,12 +10,12 @@
 %{?rcsuf:%global versuf -%{rcsuf}}
 
 Name:           cmake
-Version:        3.19.2
-Release:        3
+Version:        3.22.0
+Release:        1
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
-Source0:        https://www.cmake.org/files/v3.19/cmake-%{version}.tar.gz
+Source0:        https://www.cmake.org/files/v3.22/cmake-%{version}.tar.gz
 Source1:        cmake-init.el
 Source2:        macros.cmake
 Source3:        cmake.attr
@@ -234,6 +234,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Fri Dec 3 2021 wangchen <wangchen137@huawei.com> - 3.22.0-1
+- Update to 3.22.0
+
 * Tue Jul 20 2021 wangchen <wangchen137@huawei.com> - 3.19.2-3
 - Delete unnecessary gdb from BuildRequires
 
