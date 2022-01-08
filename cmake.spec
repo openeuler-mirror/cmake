@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 %bcond_with bootstrap
 %bcond_without ncurses
-%bcond_without sphinx
+%bcond_with sphinx
 %bcond_without X11_test
 %global rpm_macros_dir %(d=%{_rpmconfigdir}/macros.d; [ -d $d ] || d=%{_sysconfdir}/rpm; echo $d)
 
@@ -11,7 +11,7 @@
 
 Name:           cmake
 Version:        3.22.0
-Release:        1
+Release:        2
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
@@ -234,6 +234,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Sat Jan 8 2022 panxiaohe <panxiaohe@huawei.com> - 3.22.0-2
+- disable sphinx-build
+
 * Fri Dec 3 2021 wangchen <wangchen137@huawei.com> - 3.22.0-1
 - Update to 3.22.0
 
