@@ -11,7 +11,7 @@
 
 Name:           cmake
 Version:        3.22.0
-Release:        3
+Release:        4
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
@@ -38,7 +38,7 @@ BuildRequires:  python3-sphinx
 %endif
 %if %{without bootstrap}
 BuildRequires:  bzip2-devel curl-devel expat-devel jsoncpp-devel libarchive-devel
-BuildRequires:  libuv-devel rhash-devel xz-devel zlib-devel cmake-rpm-macros
+BuildRequires:  libuv-devel xz-devel zlib-devel cmake-rpm-macros
 %endif
 
 Requires:       cmake-data = %{version}-%{release} cmake-rpm-macros = %{version}-%{release}
@@ -113,6 +113,7 @@ pushd build
              --docdir=/share/doc/cmake --mandir=/share/man \
              --%{?with_bootstrap:no-}system-libs \
              --parallel=`/usr/bin/getconf _NPROCESSORS_ONLN` \
+             --no-system-librhash \
 %if %{with sphinx}
              --sphinx-man --sphinx-html \
 %else
@@ -234,6 +235,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Wed Mar 2 2022 wangchen <wangchen137@h-partners.com> - 3.22.0-4
+- Remove rhash-devel from BuildRequires
+
 * Thu Jan 13 2022 panxiaohe <panxiaohe@huawei.com> - 3.22.0-3
 - enable sphinx-build
 
