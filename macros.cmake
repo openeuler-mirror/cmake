@@ -2,9 +2,15 @@
 # Macros for cmake
 #
 %_cmake_lib_suffix64 -DLIB_SUFFIX=64
+%_cmake_shared_libs -DBUILD_SHARED_LIBS:BOOL=ON
 %_cmake_skip_rpath -DCMAKE_SKIP_RPATH:BOOL=ON
 %_cmake_version @@CMAKE_VERSION@@
 %__cmake /usr/bin/cmake
+%__ctest /usr/bin/ctest
+# keep in-source building for backward compatibility
+%_vpath_builddir .
+%_vpath_srcdir .
+%__cmake_builddir %{_vpath_builddir}
 
 # - Set default compile flags
 # - CMAKE_*_FLAGS_RELEASE are added *after* the *FLAGS environment variables
@@ -19,6 +25,8 @@
   FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
   %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
   %__cmake \\\
+        -S "%{_vpath_srcdir}" \\\
+        -B "%{__cmake_builddir}" \\\
         -DCMAKE_C_FLAGS_RELEASE:STRING="-DNDEBUG" \\\
         -DCMAKE_CXX_FLAGS_RELEASE:STRING="-DNDEBUG" \\\
         -DCMAKE_Fortran_FLAGS_RELEASE:STRING="-DNDEBUG" \\\
@@ -31,6 +39,20 @@
 %if "%{?_lib}" == "lib64" \
         %{?_cmake_lib_suffix64} \\\
 %endif \
-        -DBUILD_SHARED_LIBS:BOOL=ON
+        %{?_cmake_shared_libs}
+
+%cmake_build \
+  %__cmake --build "%{__cmake_builddir}" %{?_smp_mflags} --verbose
+
+%cmake_install \
+  DESTDIR="%{buildroot}" %__cmake --install "%{__cmake_builddir}"
+
+%ctest(:-:) \
+  cd "%{__cmake_builddir}" \
+  %__ctest --output-on-failure --force-new-ctest-process %{?_smp_mflags} %{**} \
+  cd -
 
 %cmake@@CMAKE_MAJOR_VERSION@@ %cmake
+%cmake@@CMAKE_MAJOR_VERSION@@_build %cmake_build
+%cmake@@CMAKE_MAJOR_VERSION@@_install %cmake_install
+%ctest@@CMAKE_MAJOR_VERSION@@(:-:) %ctest %{**}

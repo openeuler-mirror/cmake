@@ -11,7 +11,7 @@
 
 Name:           cmake
 Version:        3.22.0
-Release:        2
+Release:        3
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
@@ -235,6 +235,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Tue Jul 12 2022 Jiacheng Zhou <jchzhou@outlook.com> - 3.22.0-3
+- Add cmake_build, cmake_install and related macros without changing current behaviour
+
 * Wed Mar 2 2022 wangchen <wangchen137@h-partners.com> - 3.22.0-2
 - Remove rhash-devel from BuildRequires
 
