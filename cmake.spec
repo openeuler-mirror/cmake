@@ -10,12 +10,12 @@
 %{?rcsuf:%global versuf -%{rcsuf}}
 
 Name:           cmake
-Version:        3.19.2
+Version:        3.22.0
 Release:        3
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
-Source0:        https://www.cmake.org/files/v3.19/cmake-%{version}.tar.gz
+Source0:        https://www.cmake.org/files/v3.22/cmake-%{version}.tar.gz
 Source1:        cmake-init.el
 Source2:        macros.cmake
 Source3:        cmake.attr
@@ -38,7 +38,7 @@ BuildRequires:  python3-sphinx
 %endif
 %if %{without bootstrap}
 BuildRequires:  bzip2-devel curl-devel expat-devel jsoncpp-devel libarchive-devel
-BuildRequires:  libuv-devel rhash-devel xz-devel zlib-devel cmake-rpm-macros
+BuildRequires:  libuv-devel xz-devel zlib-devel cmake-rpm-macros
 %endif
 
 Requires:       cmake-data = %{version}-%{release} cmake-rpm-macros = %{version}-%{release}
@@ -113,6 +113,7 @@ pushd build
              --docdir=/share/doc/cmake --mandir=/share/man \
              --%{?with_bootstrap:no-}system-libs \
              --parallel=`/usr/bin/getconf _NPROCESSORS_ONLN` \
+             --no-system-librhash \
 %if %{with sphinx}
              --sphinx-man --sphinx-html \
 %else
@@ -234,6 +235,15 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Tue Jul 12 2022 Jiacheng Zhou <jchzhou@outlook.com> - 3.22.0-3
+- Add cmake_build, cmake_install and related macros without changing current behaviour
+
+* Wed Mar 2 2022 wangchen <wangchen137@h-partners.com> - 3.22.0-2
+- Remove rhash-devel from BuildRequires
+
+* Sat Feb 12 2022 wangchen <wangchen137@h-partners.com> - 3.22.0-1
+- Update to 3.22.0
+
 * Tue Jul 20 2021 wangchen <wangchen137@huawei.com> - 3.19.2-3
 - Delete unnecessary gdb from BuildRequires
 
