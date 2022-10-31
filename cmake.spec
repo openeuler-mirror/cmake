@@ -11,7 +11,7 @@
 
 Name:           cmake
 Version:        3.22.0
-Release:        2
+Release:        3
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
@@ -24,6 +24,9 @@ Source5:        cmake.req
 Patch0:         cmake-findruby.patch
 Patch1:         cmake-fedora-flag_release.patch
 Patch2:         cmake-mingw-dl.patch
+%ifarch sw_64
+Patch3:         cmake-3.22.0-sw.patch
+%endif
 
 BuildRequires:  coreutils findutils gcc-c++ gcc-gfortran sed
 BuildRequires:  emacs python3-devel pkgconfig(Qt5Widgets) desktop-file-utils
@@ -235,6 +238,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Wed Oct 19 2022 wuzx<wuzx1226@qq.com> - 3.22.0-3
+- add sw64 patch
+
 * Wed Mar 2 2022 wangchen <wangchen137@h-partners.com> - 3.22.0-2
 - Remove rhash-devel from BuildRequires
 
