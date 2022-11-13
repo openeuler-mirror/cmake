@@ -10,8 +10,8 @@
 %{?rcsuf:%global versuf -%{rcsuf}}
 
 Name:           cmake
-Version:        3.22.0
-Release:        3
+Version:        3.24.3
+Release:        1
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
@@ -238,6 +238,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Mon Nov 14 2022 jchzhou <zhoujiacheng@iscas.ac.cn> - 3.24.3-1
+- Update to 3.24.3
+
 * Wed Oct 19 2022 wuzx<wuzx1226@qq.com> - 3.22.0-3
 - add sw64 patch
 

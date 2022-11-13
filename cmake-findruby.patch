@@ -1,8 +1,8 @@
-Index: cmake-3.22.0-rc1/Modules/FindRuby.cmake
+Index: cmake-3.23.0-rc2/Modules/FindRuby.cmake
 ===================================================================
---- cmake-3.22.0-rc1.orig/Modules/FindRuby.cmake
-+++ cmake-3.22.0-rc1/Modules/FindRuby.cmake
-@@ -304,14 +304,9 @@ if(Ruby_EXECUTABLE AND NOT Ruby_VERSION_
+--- cmake-3.23.0-rc2.orig/Modules/FindRuby.cmake
++++ cmake-3.23.0-rc2/Modules/FindRuby.cmake
+@@ -315,14 +315,9 @@ if(Ruby_EXECUTABLE AND NOT Ruby_VERSION_
    _RUBY_CONFIG_VAR("sitearchdir" Ruby_SITEARCH_DIR)
    _RUBY_CONFIG_VAR("sitelibdir" Ruby_SITELIB_DIR)
  
