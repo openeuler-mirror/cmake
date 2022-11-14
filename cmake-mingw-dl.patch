@@ -1,7 +1,7 @@
-Index: cmake-3.22.0-rc1/Modules/Platform/Windows-GNU.cmake
+Index: cmake-3.23.0-rc2/Modules/Platform/Windows-GNU.cmake
 ===================================================================
---- cmake-3.22.0-rc1.orig/Modules/Platform/Windows-GNU.cmake
-+++ cmake-3.22.0-rc1/Modules/Platform/Windows-GNU.cmake
+--- cmake-3.23.0-rc2.orig/Modules/Platform/Windows-GNU.cmake
++++ cmake-3.23.0-rc2/Modules/Platform/Windows-GNU.cmake
 @@ -24,11 +24,11 @@ set(CMAKE_STATIC_LIBRARY_SUFFIX ".a")
  set(CMAKE_EXTRA_LINK_EXTENSIONS ".lib") # MinGW can also link to a MS .lib
  
@@ -16,4 +16,3 @@ Index: cmake-3.22.0-rc1/Modules/Platform/Windows-GNU.cmake
  set(CMAKE_LIBRARY_PATH_FLAG "-L")
  set(CMAKE_LINK_LIBRARY_FLAG "-l")
  set(CMAKE_LINK_DEF_FILE_FLAG "") # Empty string: passing the file is enough
-
