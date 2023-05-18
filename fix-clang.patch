@@ -1,0 +1,14 @@
+diff -u -r cmake-3.24.3/Source/Checks/cm_cxx_features.cmake cmake-3.24.3/Source/Checks/cm_cxx_features.cmake
+--- cmake-3.24.3/Source/Checks/cm_cxx_features.cmake	2022-11-01 22:55:49.000000000 +0800
++++ cmake-3.24.3/Source/Checks/cm_cxx_features.cmake	2023-05-17 22:50:35.000000000 +0800
+@@ -76,8 +76,8 @@
+ endfunction()
+ 
+ cm_check_cxx_feature(make_unique)
+-if(CMake_HAVE_CXX_MAKE_UNIQUE)
+-  set(CMake_HAVE_CXX_UNIQUE_PTR 1)
++if(CMake_HAVE_CXX_MAKE_UNIQUE OR (CMAKE_CXX_COMPILER_ID MATCHES "Clang" AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 15))
++	set(CMake_HAVE_CXX_UNIQUE_PTR 1)
+ endif()
+ cm_check_cxx_feature(unique_ptr)
+ if (NOT CMAKE_CXX_STANDARD LESS "17")

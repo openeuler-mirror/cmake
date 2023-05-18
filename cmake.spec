@@ -11,7 +11,7 @@
 
 Name:           cmake
 Version:        3.24.3
-Release:        1
+Release:        2
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
@@ -27,6 +27,7 @@ Patch2:         cmake-mingw-dl.patch
 %ifarch sw_64
 Patch3:         cmake-3.22.0-sw.patch
 %endif
+Patch4:         fix-clang.patch
 
 BuildRequires:  coreutils findutils gcc-c++ gcc-gfortran sed
 BuildRequires:  emacs python3-devel pkgconfig(Qt5Widgets) desktop-file-utils
@@ -238,6 +239,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Thu May 18 2023 yoo <sunyuechi@iscas.ac.cn> - 3.24.3-2
+- fix clang build error
+
 * Mon Nov 14 2022 jchzhou <zhoujiacheng@iscas.ac.cn> - 3.24.3-1
 - Update to 3.24.3
 
