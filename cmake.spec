@@ -11,7 +11,7 @@
 
 Name:           cmake
 Version:        3.24.3
-Release:        1
+Release:        2
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
@@ -43,6 +43,9 @@ BuildRequires:  python3-sphinx
 BuildRequires:  bzip2-devel curl-devel expat-devel jsoncpp-devel libarchive-devel
 BuildRequires:  libuv-devel xz-devel zlib-devel cmake-rpm-macros
 %endif
+
+BuildRequires:  pkgconfig(bash-completion)
+%global bash_completionsdir %(pkg-config --variable=completionsdir bash-completion 2>/dev/null || echo '%{_datadir}/bash-completion/completions')
 
 Requires:       cmake-data = %{version}-%{release} cmake-rpm-macros = %{version}-%{release}
 Requires:       cmake-filesystem = %{version}-%{release}
@@ -133,11 +136,6 @@ find %{buildroot}%{_datadir}/cmake/Modules -type f | xargs chmod -x
 for f in ccmake cmake cpack ctest;
 do
  ln -s $f %{buildroot}%{_bindir}/${f}3;
-done
-install -d %{buildroot}%{_datadir}/bash-completion/completions
-for f in %{buildroot}%{_datadir}/cmake/completions/*
-do
-  ln -s ../../cmake/completions/$(basename $f) %{buildroot}%{_datadir}/bash-completion/completions
 done
 install -d %{buildroot}%{_emacs_sitelispdir}/cmake
 install -p -m 0644 Auxiliary/cmake-mode.el %{buildroot}%{_emacs_sitelispdir}/cmake/cmake-mode.el
@@ -238,6 +236,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Thu Dec 14 2023 liyanan <liyanan61@h-partners.com> - 3.24.3-2
+- Fix abnormal empty link in cmake-data package
+
 * Mon Nov 14 2022 jchzhou <zhoujiacheng@iscas.ac.cn> - 3.24.3-1
 - Update to 3.24.3
 
