@@ -10,22 +10,20 @@
 %{?rcsuf:%global versuf -%{rcsuf}}
 
 Name:           cmake
-Version:        3.24.3
-Release:        2
+Version:        3.27.9
+Release:        1
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
-Source0:        https://www.cmake.org/files/v3.22/cmake-%{version}.tar.gz
+Source0:        https://www.cmake.org/files/v3.27/cmake-%{version}.tar.gz
 Source1:        cmake-init.el
 Source2:        macros.cmake
 Source3:        cmake.attr
 Source4:        cmake.prov
 Source5:        cmake.req
 Patch0:         cmake-findruby.patch
-Patch1:         cmake-fedora-flag_release.patch
-Patch2:         cmake-mingw-dl.patch
 %ifarch sw_64
-Patch3:         cmake-3.22.0-sw.patch
+Patch1:         cmake-3.22.0-sw.patch
 %endif
 
 BuildRequires:  coreutils findutils gcc-c++ gcc-gfortran sed
@@ -49,7 +47,7 @@ BuildRequires:  pkgconfig(bash-completion)
 
 Requires:       cmake-data = %{version}-%{release} cmake-rpm-macros = %{version}-%{release}
 Requires:       cmake-filesystem = %{version}-%{release}
-Provides:       cmake3 = %{version}-%{release} bundled(md5-deutsch) bundled(kwsys)
+Provides:       cmake3 = %{version}-%{release} bundled(md5-deutsch) bundled(kwsys) bundled(cppdap)
 
 %description
 CMake is used to control the software compilation process using simple
@@ -106,8 +104,11 @@ Documentation for cmake.
 
 %prep
 %autosetup -n cmake-%{version}%{?versuf} -p 1
-sed '1c #!%{__python3}' %{SOURCE4} > cmake.prov
-sed '1c #!%{__python3}' %{SOURCE5} > cmake.req
+
+echo '#!%{__python3}' > %{name}.prov
+echo '#!%{__python3}' > %{name}.req
+tail -n +2 %{SOURCE4} >> %{name}.prov
+tail -n +2 %{SOURCE5} >> %{name}.req
 
 %build
 export CFLAGS=`echo %{optflags} | sed 's/-g\b/-s/g'`
@@ -119,6 +120,7 @@ pushd build
              --docdir=/share/doc/cmake --mandir=/share/man \
              --%{?with_bootstrap:no-}system-libs \
              --parallel=`/usr/bin/getconf _NPROCESSORS_ONLN` \
+             --no-system-cppdap \
              --no-system-librhash \
 %if %{with sphinx}
              --sphinx-man --sphinx-html \
@@ -161,6 +163,9 @@ cp -p Utilities/cmexpat/COPYING ./COPYING_cmexpat
 install -d %{buildroot}%{_pkgdocdir}
 cp -pr %{buildroot}%{_datadir}/cmake/Help %{buildroot}%{_pkgdocdir}
 
+cp -p Utilities/cmcppdap/LICENSE LICENSE.cppdap
+cp -p Utilities/cmcppdap/NOTICE NOTICE.cppdap
+
 desktop-file-install --delete-original \
   --dir=%{buildroot}%{_datadir}/applications \
   %{buildroot}%{_datadir}/applications/cmake-gui.desktop
@@ -199,6 +204,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %files -f lib_files.mf
 %doc %dir %{_pkgdocdir}
 %license Copyright_* COPYING* Copyright.txt
+%license LICENSE.cppdap NOTICE.cppdap
 
 %files data -f data_files.mf
 %{_datadir}/aclocal/cmake.m4
@@ -236,6 +242,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Fri Jan 5 2024 liyanan <liyanan61@h-partners.com> - 3.27.9-1
+- Update to 3.27.9
+
 * Thu Dec 14 2023 liyanan <liyanan61@h-partners.com> - 3.24.3-2
 - Fix abnormal empty link in cmake-data package
 
