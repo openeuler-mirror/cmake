@@ -11,7 +11,7 @@
 
 Name:           cmake
 Version:        3.27.9
-Release:        1
+Release:        2
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
@@ -214,6 +214,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_emacs_sitestartdir}/cmake-init.el
 %{_datadir}/vim/vimfiles/indent/%{name}.vim
 %{_datadir}/vim/vimfiles//syntax/%{name}.vim
+%exclude %{_datadir}/cmake/Templates/Windows/Windows_TemporaryKey.pfx
 
 %files filesystem -f data_dirs.mf -f lib_dirs.mf
 
@@ -242,6 +243,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Fri Feb 2 2024 liyanan <liyanan61@h-partners.com> - 3.27.9-2
+- Remove Windows_TemporaryKey.pfx
+
 * Fri Jan 5 2024 liyanan <liyanan61@h-partners.com> - 3.27.9-1
 - Update to 3.27.9
 
