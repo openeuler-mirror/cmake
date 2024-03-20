@@ -11,7 +11,7 @@
 
 Name:           cmake
 Version:        3.27.9
-Release:        2
+Release:        3
 Summary:        Cross-platform make system
 License:        BSD and MIT and zlib
 URL:            http://www.cmake.org
@@ -25,6 +25,7 @@ Patch0:         cmake-findruby.patch
 %ifarch sw_64
 Patch1:         cmake-3.22.0-sw.patch
 %endif
+Patch2:         fix-clang.patch
 
 BuildRequires:  coreutils findutils gcc-c++ gcc-gfortran sed
 BuildRequires:  emacs python3-devel pkgconfig(Qt5Widgets) desktop-file-utils
@@ -243,6 +244,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_pkgdocdir}/Copyright.txt
 
 %changelog
+* Fri Mar 01 2024 KingYen <ruohan.oerv@isrc.iscas.ac.cn> - 3.27.9-3
+- Fix cmake compilation issues in risc-v architecture
+
 * Fri Feb 2 2024 liyanan <liyanan61@h-partners.com> - 3.27.9-2
 - Remove Windows_TemporaryKey.pfx
 
@@ -300,4 +304,3 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 * Fri Nov 29 2019 lijin Yang <yanglijin@huawei.com> - 3.12.1-2
 - init package
-
